@@ -172,7 +172,7 @@ main { max-width: var(--max); margin: 0 auto; }
 
 .hero-top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 40px 48px;
   align-items: start;
 }
@@ -191,13 +191,6 @@ h1 {
   font-size: 1.1875rem;
   line-height: 1.5;
   color: var(--ink);
-}
-
-.portrait { margin: 6px 0 0; display: grid; gap: 6px; justify-items: start; }
-.portrait img { display: block; width: 150px; height: 200px; object-fit: cover; }
-.portrait figcaption {
-  font-family: var(--font-display); font-weight: 600; font-size: 0.6875rem;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2);
 }
 
 /* Revision cloud: red pencil markup around Contact */
@@ -238,16 +231,13 @@ a.contact-link:hover::after, a.contact-link:focus-visible::after { transform: sc
 
 @media (max-width: 1100px) {
   .hero-top { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 24px 40px; }
-  .hero-title { grid-row: 1 / 3; }
-  .portrait { grid-column: 2; grid-row: 1; }
-  .portrait img { width: 120px; height: 160px; }
-  .rev-cloud { grid-column: 2; grid-row: 2; margin: 0 10px 0 0; padding: 18px 26px 20px 22px; }
+  .hero-title { grid-row: auto; }
+  .rev-cloud { grid-column: 2; grid-row: auto; margin: 0 10px 0 0; padding: 18px 26px 20px 22px; }
 }
 @media (max-width: 760px) {
   .hero { padding-top: 8px; }
   .hero-top { grid-template-columns: 1fr; grid-template-rows: none; gap: 26px; }
   .hero-title { grid-row: auto; }
-  .portrait { grid-column: auto; grid-row: auto; order: 3; margin-top: 4px; }
   .rev-cloud { grid-column: auto; grid-row: auto; }
   .hero-sub { font-size: 1.0625rem; margin-top: 16px; }
   .rev-cloud { margin: 18px 12px 0 0; padding: 18px 24px 20px 20px; min-width: 0; width: 100%; }
@@ -260,14 +250,6 @@ a.contact-link:hover::after, a.contact-link:focus-visible::after { transform: sc
 .pfd-svg text { font-family: var(--font-display); fill: var(--ink); }
 .pfd-svg .line-main { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: square; }
 .pfd-svg .line-bypass { fill: none; stroke: var(--code, var(--ink)); stroke-width: 1.5; stroke-dasharray: 7 5; }
-.pfd-svg .line-yellow {
-  fill: none; stroke: var(--yellow); stroke-width: 16; stroke-linecap: butt; stroke-linejoin: miter;
-  opacity: 0.62; mix-blend-mode: multiply;
-  stroke-dasharray: var(--len) var(--len);
-  stroke-dashoffset: var(--len);
-  animation: yellow-off 1900ms var(--ease-out) 350ms forwards;
-}
-@keyframes yellow-off { to { stroke-dashoffset: 0; } }
 .pfd-svg .arrow { fill: var(--ink); }
 .pfd-svg .sym { fill: var(--sheet); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
 .pfd-svg .sym .thin { stroke-width: 1.2; }
@@ -306,7 +288,6 @@ a.contact-link:hover::after, a.contact-link:focus-visible::after { transform: sc
 }
 .pfd-caption span { display: inline-block; }
 .key { display: inline-block; width: 22px; height: 12px; margin-right: 8px; vertical-align: -1px; }
-.key-yellow { background: var(--yellow); opacity: 0.7; height: 10px; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
 .key-bubble { width: 14px; height: 14px; border: 1.5px solid var(--ink); border-radius: 50%; }
 .key-dash { height: 0; border-top: 1.5px dashed var(--ink); }
 
@@ -374,10 +355,10 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 }
 
 /* Equipment list (experience) */
-.equipment, .revisions { width: 100%; border-collapse: collapse; }
-.equipment th, .equipment td, .revisions th, .revisions td { text-align: left; vertical-align: top; }
+.equipment { width: 100%; border-collapse: collapse; }
+.equipment th, .equipment td { text-align: left; vertical-align: top; }
 
-.equipment thead th, .revisions thead th {
+.equipment thead th {
   font-family: var(--font-display); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--ink-2);
   padding: 0 14px 10px 0; border-bottom: var(--w-thin) solid var(--rule-strong);
@@ -500,22 +481,6 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 .level { color: var(--ink-2); font-size: 0.9375rem; }
 @media (max-width: 760px) { .lang-list { grid-template-columns: 1fr; } }
 
-/* Revision table (milestones) */
-.revisions thead th { padding-right: 20px; }
-.revisions td { padding: 10px 20px 10px 0; border-bottom: 1px dashed var(--rule); }
-.revisions td:first-child { font-family: var(--font-display); font-weight: 700; width: 64px; white-space: nowrap; }
-.revisions td:nth-child(2) { width: 110px; color: var(--ink-2); white-space: nowrap; }
-.revisions tr.award { background: linear-gradient(to right, rgba(255, 214, 10, 0.34), rgba(255, 214, 10, 0.06)); }
-.award-mark {
-  display: inline-block; width: 0; height: 0; margin-right: 8px; vertical-align: 1px;
-  border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 11px solid var(--red);
-}
-.table-note { margin-top: 12px; color: var(--ink-2); font-size: 0.875rem; }
-@media (max-width: 760px) {
-  .revisions td { padding-right: 12px; }
-  .revisions td:nth-child(2) { width: 84px; }
-}
-
 /* ---------- Title block ---------- */
 
 .title-block {
@@ -580,8 +545,6 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .pfd-svg .line-yellow { animation: none; stroke-dashoffset: 0; }
-  .spine-yellow { transform: none; }
   .dwg-nav a::after, a.contact-link::after, .pfd-svg a.node .sym { transition: none; }
 }
 
@@ -593,6 +556,6 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
   .dwg-header { position: static; padding-top: 0; background: none; }
   body { padding: 12px 24px; border: 2px solid var(--ink); }
   .tag-bubble { position: static; }
-  .spine-yellow, .pfd-svg .line-yellow { animation: none; transform: none; stroke-dashoffset: 0; }
+  .spine-yellow { transform: none; }
   a[href^="http"]::after { content: ""; }
 }

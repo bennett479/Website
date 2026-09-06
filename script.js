@@ -6,8 +6,6 @@
   "use strict";
 
   const NS = "http://www.w3.org/2000/svg";
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   /* ---------- Data: one unit per stop on the line, in chronological order ---------- */
 
   const NODES = [
@@ -125,7 +123,6 @@
     });
     d += ` H${W - 24}`;
 
-    const yellow = el("path", { d, class: "line-yellow" });
     const main = el("path", { d, class: "line-main" });
     svg.append(main);
 
@@ -228,8 +225,6 @@
       svg.append(g);
     });
 
-    svg.append(yellow);
-    return yellow;
   }
 
   /* ---------- Vertical layout (phones) ---------- */
@@ -246,7 +241,6 @@
       if (n.raised) d += ` V${ys[i] - 70} H${lineX + 40} V${ys[i] + 70} H${lineX}`;
     });
     d += ` V${H - 10}`;
-    const yellow = el("path", { d, class: "line-yellow" });
     svg.append(el("path", { d, class: "line-main" }));
 
     NODES.forEach((n, i) => {
@@ -295,24 +289,17 @@
       }
     });
 
-    svg.append(yellow);
-    return yellow;
   }
 
   /* ---------- Build and rebuild on breakpoint change ---------- */
 
   const svg = document.querySelector(".pfd-svg");
   const mq = window.matchMedia("(max-width: 760px)");
-  let played = false;
-
   function build() {
     const keep = Array.from(svg.children).filter(c => c.tagName === "title" || c.tagName === "desc");
     svg.replaceChildren(...keep);
-    const yellow = mq.matches ? buildVertical(svg) : buildHorizontal(svg);
-    const len = yellow.getTotalLength();
-    yellow.style.setProperty("--len", len.toFixed(1));
-    if (played || reduceMotion) { yellow.style.animation = "none"; yellow.style.strokeDashoffset = "0"; }
-    played = true;
+    if (mq.matches) buildVertical(svg);
+    else buildHorizontal(svg);
   }
   if (svg) {
     build();
@@ -349,20 +336,23 @@
 
   const spine = document.querySelector(".spine-yellow");
   const body = document.querySelector(".sheet-body");
-  if (spine && body && !reduceMotion) {
+  if (spine && body) {
     let ticking = false;
+    let hasScrolled = false;
     const update = () => {
       ticking = false;
+      if (!hasScrolled) return;
       const rect = body.getBoundingClientRect();
       const readLine = window.innerHeight * 0.55;
       const p = Math.min(1, Math.max(0, (readLine - rect.top) / rect.height));
       spine.style.setProperty("--progress", p.toFixed(4));
     };
-    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    const onScroll = () => {
+      hasScrolled = true;
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    update();
-  } else if (spine) {
-    spine.style.setProperty("--progress", "1");
+    spine.style.setProperty("--progress", "0");
   }
 })();

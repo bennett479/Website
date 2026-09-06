@@ -1,5 +1,5 @@
-/* The Process Sheet: draws the career flow diagram, the revision cloud,
-   and the scroll-linked highlighter on the sheet's spine.
+/* The Process Sheet: draws the career flow diagram and the scroll-linked
+   highlighter on the sheet's spine.
    Content lives in the NODES array below so it can be edited in one place. */
 
 (function () {
@@ -9,17 +9,17 @@
   /* ---------- Data: one unit per stop on the line, in chronological order ---------- */
 
   const NODES = [
-    { id: "tub", tag: "V-101", symbol: "vessel", name: "TU Berlin", role: "B.Sc. Industrial Engineering", dates: "10/2023 – 10/2027", code: "#15181c", href: "#education",
+    { id: "tub", tag: "B.Sc.", symbol: "vessel", name: "TU Berlin", role: "B.Sc. Industrial Engineering", dates: "10/2023 – 10/2027", code: "#15181c", href: "#education",
       instruments: [["LTX", "LaTeX"], ["FUS", "Fusion"], ["C++", "C / C++"]], tenure: "4 years · to 10/2027" },
-    { id: "cct", tag: "M-201", symbol: "mixer", name: "Company Consulting Team", role: "Student Consultant, project lead", dates: "06/2024 – 06/2026", code: "#1f5fbf", href: "#exp-cct",
+    { id: "cct", tag: "Consulting", symbol: "mixer", name: "Company Consulting Team", role: "Student Consultant, project lead", dates: "06/2024 – 06/2026", code: "#1f5fbf", href: "#exp-cct",
       instruments: [["ISO", "ISO 31000"], ["XLS", "Excel"]], bypassUntilBefore: "se", bypassLabel: "Student consulting continues in parallel · 06/2024 – 06/2026", tenure: "2 years 1 month" },
-    { id: "abb", tag: "P-301", symbol: "pump", name: "ABB", role: "Working Student, Industrial Engineering", dates: "10/2024 – 07/2025", code: "#2a8a4a", href: "#exp-abb",
+    { id: "abb", tag: "Engineering", symbol: "pump", name: "ABB", role: "Working Student, Industrial Engineering", dates: "10/2024 – 07/2025", code: "#2a8a4a", href: "#exp-abb",
       instruments: [["CAD", "AutoCAD"]], tenure: "10 months" },
-    { id: "ucb", tag: "E-401", symbol: "exchanger", name: "UC Berkeley", role: "Exchange semester, IEOR", dates: "08/2025 – 12/2025", code: "#15181c", href: "#education", raised: true,
+    { id: "ucb", tag: "Exchange", symbol: "exchanger", name: "UC Berkeley", role: "Exchange semester, IEOR", dates: "08/2025 – 12/2025", code: "#15181c", href: "#education", raised: true,
       instruments: [["ENT", "Entrepreneurship"], ["STU", "Start-ups"]], tenure: "1 semester · 5 months" },
-    { id: "ey", tag: "F-501", symbol: "filter", name: "EY", role: "Intern in Auditing", dates: "01/2026 – 04/2026", code: "#b8641b", href: "#exp-ey",
+    { id: "ey", tag: "Audit", symbol: "filter", name: "EY", role: "Intern in Auditing", dates: "01/2026 – 04/2026", code: "#b8641b", href: "#exp-ey",
       instruments: [], tenure: "4 months" },
-    { id: "se", tag: "T-601", symbol: "turbine", name: "Siemens Energy", role: "Working Student, Data Analytics & AI in Procurement", dates: "06/2026 – today", code: "#0e7c86", href: "#exp-se", current: true,
+    { id: "se", tag: "Current role", symbol: "turbine", name: "Siemens Energy", role: "Working Student, Data Analytics & AI in Procurement", dates: "06/2026 – today", code: "#0e7c86", href: "#exp-se", current: true,
       instruments: [], tenure: "4 months · ongoing" }
   ];
 
@@ -101,7 +101,8 @@
     return g;
   }
   function nodeLink(node) {
-    const a = el("a", { class: "node", href: node.href, style: `--code:${node.code}` });
+    const target = location.pathname.endsWith("career-flow.html") ? `index.html${node.href}` : node.href;
+    const a = el("a", { class: "node", href: target, style: `--code:${node.code}` });
     a.setAttribute("aria-label", `${node.name}: ${node.role}, ${node.dates}. Jump to details.`);
     return a;
   }
@@ -205,7 +206,7 @@
         const g = el("g");
         g.append(el("path", { d: `M${x},${y + 34} V${y + 62}`, class: "leader" }));
         g.append(el("rect", { x: x - 66, y: y + 62, width: 132, height: 24, class: "status-box" }));
-        g.append(txt(x, y + 78, "IN OPERATION · 06/2026", "status-t"));
+        g.append(txt(x, y + 78, "CURRENT ROLE · 06/2026", "status-t"));
         svg.append(g);
       }
     });
@@ -284,7 +285,7 @@
       if (n.current) {
         const g = el("g");
         g.append(el("rect", { x: lx, y: rowY - 12, width: 132, height: 24, class: "status-box" }));
-        g.append(txt(lx + 66, rowY + 4, "IN OPERATION · 06/2026", "status-t"));
+        g.append(txt(lx + 66, rowY + 4, "CURRENT ROLE · 06/2026", "status-t"));
         svg.append(g);
       }
     });
@@ -354,5 +355,24 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     spine.style.setProperty("--progress", "0");
+  }
+
+  /* ---------- Collapsible navigation ---------- */
+
+  const menu = document.querySelector(".site-menu");
+  if (menu) {
+    const toggle = menu.querySelector(".menu-toggle");
+    const panel = menu.querySelector(".site-menu-panel");
+    const setOpen = open => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      panel.hidden = !open;
+      menu.classList.toggle("is-open", open);
+    };
+    toggle.addEventListener("click", () => setOpen(panel.hidden));
+    panel.addEventListener("click", () => setOpen(false));
+    document.addEventListener("click", event => {
+      if (!menu.contains(event.target)) setOpen(false);
+    });
   }
 })();

@@ -9,18 +9,18 @@
   /* ---------- Data: one unit per stop on the line, in chronological order ---------- */
 
   const NODES = [
-    { id: "tub", tag: "B.Sc.", symbol: "vessel", name: "TU Berlin", role: "B.Sc. Industrial Engineering", dates: "10/2023 – 10/2027", code: "#15181c", href: "#education",
-      instruments: [["LTX", "LaTeX"], ["FUS", "Fusion"], ["C++", "C / C++"]], tenure: "4 years · to 10/2027" },
-    { id: "cct", tag: "Consulting", symbol: "mixer", name: "Company Consulting Team", role: "Student Consultant, project lead", dates: "06/2024 – 06/2026", code: "#1f5fbf", href: "#exp-cct",
-      instruments: [["ISO", "ISO 31000"], ["XLS", "Excel"]], bypassUntilBefore: "se", bypassLabel: "Student consulting continues in parallel · 06/2024 – 06/2026", tenure: "2 years 1 month" },
-    { id: "abb", tag: "Engineering", symbol: "pump", name: "ABB", role: "Working Student, Industrial Engineering", dates: "10/2024 – 07/2025", code: "#2a8a4a", href: "#exp-abb",
-      instruments: [["CAD", "AutoCAD"]], tenure: "10 months" },
-    { id: "ucb", tag: "Exchange", symbol: "exchanger", name: "UC Berkeley", role: "Exchange semester, IEOR", dates: "08/2025 – 12/2025", code: "#15181c", href: "#education", raised: true,
-      instruments: [["ENT", "Entrepreneurship"], ["STU", "Start-ups"]], tenure: "1 semester · 5 months" },
-    { id: "ey", tag: "Audit", symbol: "filter", name: "EY", role: "Intern in Auditing", dates: "01/2026 – 04/2026", code: "#b8641b", href: "#exp-ey",
-      instruments: [], tenure: "4 months" },
-    { id: "se", tag: "Current role", symbol: "turbine", name: "Siemens Energy", role: "Working Student, Data Analytics & AI in Procurement", dates: "06/2026 – today", code: "#0e7c86", href: "#exp-se", current: true,
-      instruments: [], tenure: "4 months · ongoing" }
+    { id: "tub", tag: "B.Sc.", symbol: "vessel", name: "TU Berlin", role: "Bachelor of Science - BS, Industrial Engineering", dates: "Oct 2023 - Oct 2027", code: "#15181c", href: "#education",
+      instruments: [["LTX", "LaTeX"], ["FUS", "Fusion"], ["C++", "C / C++"]], tenure: "Oct 2023 - Oct 2027" },
+    { id: "cct", tag: "Consulting", symbol: "mixer", name: "Company Consulting Team", role: "Student Consultant", dates: "Jun 2024 - Jun 2026", code: "#1f5fbf", href: "#exp-cct",
+      instruments: [["ISO", "ISO 31000"], ["XLS", "Excel"]], bypassUntilBefore: "se", bypassLabel: "Student Consultant · Jun 2024 - Jun 2026", tenure: "2 yrs 1 mo" },
+    { id: "abb", tag: "Engineering", symbol: "pump", name: "ABB", role: "Working Student in Industrial Engineering", dates: "Oct 2024 - Jul 2025", code: "#2a8a4a", href: "#exp-abb",
+      instruments: [["CAD", "AutoCAD"]], tenure: "10 mos" },
+    { id: "ucb", tag: "Exchange", symbol: "exchanger", name: "UC Berkeley", role: "Industrial Engineering & Operations Research (IEOR)", dates: "Aug 2025 - Dec 2025", code: "#15181c", href: "#education", raised: true,
+      instruments: [["ENT", "Entrepreneurship"], ["STU", "Start-ups"]], tenure: "5 mos" },
+    { id: "ey", tag: "Audit", symbol: "filter", name: "EY", role: "Intern in Auditing", dates: "Jan 2026 - Apr 2026", code: "#b8641b", href: "#exp-ey",
+      instruments: [], tenure: "4 mos" },
+    { id: "se", tag: "Current role", symbol: "turbine", name: "Siemens Energy", role: "Working Student in Data Analytics & AI in Procurement", dates: "Jun 2026 - Present", code: "#0e7c86", href: "#exp-se", current: true,
+      instruments: [], tenure: "4 mos" }
   ];
 
   /* ---------- SVG helpers ---------- */

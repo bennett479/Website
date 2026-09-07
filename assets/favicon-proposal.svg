@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Favicon proposal: process-sheet node with a BM monogram. -->
+  <rect width="64" height="64" rx="11" fill="#15181c"/>
+  <rect x="5" y="5" width="54" height="54" rx="7" fill="#f6f7f4"/>
+
+  <!-- Yellow progress marker from the site's scroll spine. -->
+  <rect x="9" y="5" width="8" height="54" fill="#ffd60a"/>
+
+  <!-- Process node. -->
+  <circle cx="33" cy="32" r="19" fill="#15181c"/>
+
+  <!-- Geometric BM monogram, kept bold for 16px rendering. -->
+  <path fill="#f6f7f4" d="M20 19h7.2c4.8 0 7.7 2.4 7.7 6.3 0 2.2-1 3.9-2.8 5 2.2 1 3.5 2.8 3.5 5.5 0 4.6-3.2 7.2-8.4 7.2H20V19Zm4.5 3.8v5.9h2.1c2.4 0 3.7-1 3.7-3s-1.3-2.9-3.7-2.9h-2.1Zm0 9.5v6.8h2.5c2.7 0 4.1-1.1 4.1-3.4 0-2.2-1.4-3.4-4.1-3.4h-2.5Z"/>
+  <path fill="#f6f7f4" d="M36 45V19h4.3l3.7 9.3 3.6-9.3H52v26h-4.4V28.2l-3.3 8.6h-.7l-3.2-8.6V45H36Z"/>
+</svg>

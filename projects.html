@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Overview — Bennett Mende</title>
+<meta name="description" content="Private project overview for Bennett Mende's work and case studies.">
+<meta name="theme-color" content="#f6f7f4">
+<link rel="icon" href="assets/favicon.svg?v=bm-rounded" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="projects-page-body">
+
+<div class="frame" aria-hidden="true">
+  <div class="frame-border"></div>
+  <ol class="zones zones-top"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ol>
+  <ol class="zones zones-bottom"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ol>
+  <ol class="zones zones-left"><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li>F</li></ol>
+  <ol class="zones zones-right"><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li>F</li></ol>
+</div>
+
+<div class="site-menu">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-panel" aria-label="Open navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="site-menu-panel" id="site-menu-panel" aria-label="Site navigation" hidden>
+    <a href="index.html">Overview</a>
+    <a href="career-flow.html">Career Flow Diagram</a>
+    <a href="projects.html" aria-current="page">Project Overview</a>
+  </nav>
+</div>
+
+<a class="skip" href="#project-access">Skip to project access</a>
+
+<header class="dwg-header">
+  <nav class="dwg-nav" aria-label="Pages">
+    <a href="index.html">Overview</a>
+    <a href="career-flow.html">Career Flow Diagram</a>
+    <a href="projects.html" aria-current="page">Project Overview</a>
+  </nav>
+</header>
+
+<main class="projects-page">
+  <section class="projects-intro" aria-labelledby="projects-title">
+    <h1 id="projects-title">Project Overview</h1>
+    <p>A private space for selected projects, case studies and work samples.</p>
+  </section>
+
+  <section class="sheet-section project-gate" id="project-access" data-project-gate data-password-hash="4ff34203fb0f615c35ac3db817779a59c5575a002192e0709014c7554c521866" aria-labelledby="project-access-title">
+    <div class="gutter"><span class="tag-bubble" aria-label="Protected projects">▣</span></div>
+    <div class="section-inner">
+      <div class="section-head">
+        <h2 id="project-access-title">Private Projects</h2>
+      </div>
+      <p class="project-intro">Enter the access password to view the project overview.</p>
+      <form class="project-access-form" id="project-access-form">
+        <label for="project-password">Access password</label>
+        <div class="project-form-row">
+          <input id="project-password" name="password" type="password" autocomplete="current-password" required>
+          <button type="submit">Unlock projects</button>
+        </div>
+        <p class="project-status" id="project-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="sheet-section project-content" data-project-content id="projects" aria-labelledby="project-content-title" hidden>
+    <div class="gutter"><span class="tag-bubble" aria-label="Project index">✦</span></div>
+    <div class="section-inner">
+      <div class="section-head">
+        <h2 id="project-content-title">Selected Work</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <span class="project-number">01</span>
+          <h3>Project placeholder</h3>
+          <p>Add a concise project summary, your contribution and the outcome here.</p>
+        </article>
+        <article class="project-card">
+          <span class="project-number">02</span>
+          <h3>Project placeholder</h3>
+          <p>Use this space for a second case study, portfolio link or work sample.</p>
+        </article>
+        <article class="project-card">
+          <span class="project-number">03</span>
+          <h3>Project placeholder</h3>
+          <p>Replace this card with another project when you are ready to publish it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>

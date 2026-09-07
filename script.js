@@ -357,6 +357,48 @@
     spine.style.setProperty("--progress", "0");
   }
 
+  /* ---------- Password-gated project overview ---------- */
+
+  const projectGate = document.querySelector("[data-project-gate]");
+  if (projectGate) {
+    const projectContent = document.querySelector("[data-project-content]");
+    const form = projectGate.querySelector(".project-access-form");
+    const input = projectGate.querySelector("#project-password");
+    const status = projectGate.querySelector(".project-status");
+    const expectedHash = projectGate.dataset.passwordHash;
+    const sessionKey = "bennett-mende-project-overview-access";
+    const hash = async value => {
+      const bytes = new TextEncoder().encode(value);
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
+    };
+    const reveal = () => {
+      projectGate.hidden = true;
+      projectContent.hidden = false;
+      try { sessionStorage.setItem(sessionKey, "granted"); } catch (_) { /* storage may be disabled */ }
+    };
+    try {
+      if (sessionStorage.getItem(sessionKey) === "granted") reveal();
+    } catch (_) { /* storage may be disabled */ }
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      status.textContent = "";
+      input.removeAttribute("aria-invalid");
+      try {
+        if ((await hash(input.value)) === expectedHash) {
+          reveal();
+          return;
+        }
+      } catch (_) {
+        status.textContent = "Access could not be checked in this browser.";
+        return;
+      }
+      input.setAttribute("aria-invalid", "true");
+      status.textContent = "That password is not correct.";
+      input.select();
+    });
+  }
+
   /* ---------- Collapsible navigation ---------- */
 
   const menu = document.querySelector(".site-menu");

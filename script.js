@@ -10,17 +10,17 @@
 
   const NODES = [
     { id: "tub", tag: "B.Sc.", symbol: "vessel", name: "TU Berlin", role: "Bachelor of Science - BS, Industrial Engineering", dates: "Oct 2023 - Oct 2027", code: "#15181c", href: "#education",
-      instruments: [["LTX", "LaTeX"], ["FUS", "Fusion"], ["C++", "C / C++"]], tenure: "Oct 2023 - Oct 2027" },
+      instruments: [["LTX", "LaTeX"], ["C++", "C and C++ basics"], ["CAD", "CAD (Solid Edge and Fusion)"]], tenure: "Oct 2023 - Oct 2027" },
     { id: "cct", tag: "Consulting", symbol: "mixer", name: "Company Consulting Team", role: "Student Consultant", dates: "Jun 2024 - Jun 2026", code: "#1f5fbf", href: "#exp-cct",
-      instruments: [["ISO", "ISO 31000"], ["XLS", "Excel"]], bypassUntilBefore: "se", bypassLabel: "Student Consultant · Jun 2024 - Jun 2026", tenure: "2 yrs 1 mo" },
+      instruments: [["XLS", "Excel"]], bypassUntilBefore: "se", bypassLabel: "Student Consultant · Jun 2024 - Jun 2026", tenure: "2 yrs 1 mo" },
     { id: "abb", tag: "Engineering", symbol: "pump", name: "ABB", role: "Working Student in Industrial Engineering", dates: "Oct 2024 - Jul 2025", code: "#2a8a4a", href: "#exp-abb",
-      instruments: [["CAD", "AutoCAD"]], tenure: "10 mos" },
+      instruments: [["CAD", "CAD (Solid Edge and Fusion)"]], tenure: "10 mos" },
     { id: "ucb", tag: "Exchange", symbol: "exchanger", name: "UC Berkeley", role: "Industrial Engineering & Operations Research (IEOR)", dates: "Aug 2025 - Dec 2025", code: "#15181c", href: "#education", raised: true,
-      instruments: [["ENT", "Entrepreneurship"], ["STU", "Start-ups"]], tenure: "5 mos" },
+      instruments: [], tenure: "5 mos" },
     { id: "ey", tag: "Audit", symbol: "filter", name: "EY", role: "Intern in Auditing", dates: "Jan 2026 - Apr 2026", code: "#b8641b", href: "#exp-ey",
       instruments: [], tenure: "4 mos" },
     { id: "se", tag: "Current role", symbol: "turbine", name: "Siemens Energy", role: "Working Student in Data Analytics & AI in Procurement", dates: "Jun 2026 - Present", code: "#0e7c86", href: "#exp-se", current: true,
-      instruments: [], tenure: "4 mos" }
+      instruments: [["PBI", "PowerBI"], ["PY", "Python"], ["ALT", "Alteryx"], ["PPT", "PowerPoint"]], tenure: "4 mos" }
   ];
 
   /* ---------- SVG helpers ---------- */

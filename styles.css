@@ -491,12 +491,6 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 }
 
 /* Experience list: each role gets a wide responsibility lane. */
-.experience-head {
-  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px;
-  padding: 0 0 10px; border-bottom: var(--w-thin) solid var(--rule-strong);
-  font-family: var(--font-display); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink-2);
-}
 .experience-list { display: grid; }
 .experience-company { border-top: var(--w-thin) solid var(--rule); }
 .experience-company:first-child { border-top: 0; }
@@ -521,7 +515,6 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
   text-transform: uppercase;
   margin-right: 16px;
 }
-.unit-meta { font-family: var(--font-display); font-weight: 500; font-size: 0.9375rem; color: var(--ink-2); letter-spacing: 0.02em; }
 .in-operation {
   display: inline-block;
   padding: 3px 9px 2px;
@@ -539,20 +532,22 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 }
 .experience-entry:last-child { border-bottom: 0; }
 .experience-entry::before {
-  content: ""; position: absolute; left: 5px; top: 26px; bottom: 10px; width: 1.5px;
+  content: ""; position: absolute; left: 5px; top: 26px; bottom: 10px; width: 1.5px; transform: translateX(-50%);
   background: repeating-linear-gradient(to bottom, var(--code) 0 4px, transparent 4px 8px);
 }
-.experience-entry:last-child::before { bottom: 50%; }
+.experience-entry.no-details::before { display: none; }
 .experience-entry::after {
-  content: ""; position: absolute; left: 0; top: 26px; width: 10px; height: 10px; border-radius: 50%;
+  content: ""; position: absolute; left: 0; top: 17px; width: 10px; height: 10px; border-radius: 50%;
   background: var(--sheet); border: 1.5px solid var(--code);
 }
 .experience-entry-top {
-  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center;
   padding-left: 20px;
 }
-.experience-date { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.experience-date { grid-column: 2; grid-row: 1; display: flex; align-items: baseline; justify-content: flex-end; flex-wrap: wrap; gap: 0 7px; color: var(--ink-2); font-variant-numeric: tabular-nums; text-align: right; }
+.experience-location, .date-range { white-space: nowrap; }
 .experience-role {
+  grid-column: 1; grid-row: 1;
   margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.1875rem;
   line-height: 1.25; letter-spacing: 0.005em;
 }
@@ -570,14 +565,18 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 .linkedin-copy ul:last-child, .linkedin-list:last-child { margin-bottom: 0; }
 
 @media (max-width: 760px) {
-  .experience-head { display: none; }
   .experience-company .unit-row { padding: 18px 0 6px; }
   .experience-company .unit-row > * { display: block; }
   .unit-name { font-size: 1.375rem; margin: 0 0 2px; }
+  #exp-se .unit-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; }
+  #exp-se .unit-row > * { display: inline-flex; }
+  #exp-se .unit-name { flex: 0 1 auto; min-width: 0; white-space: nowrap; margin: 0; font-size: 1.2rem; }
+  #exp-se .in-operation { padding: 2px 6px 1px; font-size: 0.64rem; letter-spacing: 0.06em; }
   .experience-entry { padding: 10px 0 16px; }
   .experience-entry::before, .experience-entry::after { display: none; }
   .experience-entry-top { grid-template-columns: 1fr; gap: 4px; padding-left: 0; }
-  .experience-date { font-size: 0.8125rem; }
+  .experience-date { grid-column: 1; grid-row: 2; justify-content: flex-start; font-size: 0.8125rem; text-align: left; }
+  .experience-role { grid-column: 1; grid-row: 1; }
   .experience-role { font-size: 1.125rem; }
   .experience-entry > .linkedin-copy { margin-top: 10px; padding-left: 0; font-size: 1rem; }
 }
@@ -619,7 +618,7 @@ h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: 0.06em; text-transfo
 }
 @media (max-width: 760px) { .instruments { grid-template-columns: 1fr; } }
 .instruments li {
-  display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 14px;
   padding: 10px 0; border-bottom: 1px dashed var(--rule);
 }
 .bubble {
